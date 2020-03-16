@@ -1,0 +1,19 @@
+#main {
+    margin-top: 110px;
+    background-color: rgba(24, 28, 31, 0.8);
+    min-width: 75vw;
+    max-width: 90vw;
+    min-height: 75vh;
+    margin: 110px auto 0 auto;
+}
+
+#main:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 3px solid rgba(24, 28, 31, 0.2);
+}
