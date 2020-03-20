@@ -1,0 +1,33 @@
+.launch-filter {
+    position: relative;
+    z-index: 1;
+    padding: 15px 25px;
+    color: white;
+    background-color: #222222;
+}
+
+.launch-filter > div {
+    display: inline-block;
+    font-size: 1.1em;
+    padding: 15px;
+}
+
+.launch-filter-option {
+    padding: 5px;
+    border: 1px solid white;
+    margin-left: 5px;
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+.limit-option {
+    padding: 5px 10px;
+}
+
+.launch-filter-range-option:hover {
+    background-color: #333333;
+}
+
+.active {
+    background-color: #444444;
+}

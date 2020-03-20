@@ -13,12 +13,12 @@ code {
 }
 
 #root {
+    /* TODO: Double bg image with the second one cut-out and repeat positioned */
     background-image: url(/images/bg.png);
     width: 100%;
     min-height: 100vh;
-    overflow-x: hidden;
-    background-size: cover;
-    background-position: center center;
+    background-size: 100vw 100%;
+    background-repeat: no-repeat;
     transition: background-image 0.3s ease-in-out;
     position: relative;
     z-index: 1;

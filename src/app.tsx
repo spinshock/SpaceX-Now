@@ -19,6 +19,9 @@ const App: FunctionComponent = () => (
                     <Route path="/launches">
                         <LaunchList />
                     </Route>
+                    <Route path="/launches/:launchId">
+                        <LaunchDetails />
+                    </Route>
                 </Switch>
             </div>
         </Navbar>

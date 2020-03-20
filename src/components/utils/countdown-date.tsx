@@ -1,5 +1,6 @@
 import React, { Component, ReactElement } from 'react';
 import moment, { Moment } from 'moment';
+import './countdown-date.css';
 
 type CountdownDateProps = {
     date: Date;
@@ -11,11 +12,20 @@ type CountdownDateState = {
     isCountdown: boolean;
 };
 
+type Countdown = {
+    years: number;
+    months: number;
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+};
+
 export default class CountdownDate extends Component<
     CountdownDateProps,
     CountdownDateState
 > {
-    public countdown: string;
+    public countdown: Countdown | null;
     private countdownTimer!: NodeJS.Timeout;
 
     constructor(props: CountdownDateProps) {
@@ -24,8 +34,7 @@ export default class CountdownDate extends Component<
             date: moment(props.date, props.format),
             isCountdown: false,
         };
-        this.countdown = '00:00:00';
-        this.tick();
+        this.countdown = null;
     }
 
     componentWillUnmount(): void {
@@ -33,14 +42,29 @@ export default class CountdownDate extends Component<
     }
 
     isPast(): boolean {
-        return !this.state.date.isBefore(moment());
+        return this.state.date.isBefore(moment());
     }
 
     tick(): void {
-        this.countdown = moment
-            .utc(this.state.date.diff(moment()))
-            .format('DD:HH:mm:ss');
+        const duration = moment.duration(
+            this.state.date.unix() - moment().unix(),
+            'seconds'
+        );
+        this.setCountdown(duration);
+        console.log(this.countdown);
+
         this.setState({ ...this.state });
+    }
+
+    setCountdown(duration: moment.Duration): void {
+        this.countdown = {
+            years: duration.years(),
+            months: duration.months(),
+            days: duration.days(),
+            hours: duration.hours(),
+            minutes: duration.minutes(),
+            seconds: duration.seconds(),
+        };
     }
 
     startTimer(): void {
@@ -50,6 +74,7 @@ export default class CountdownDate extends Component<
 
     handleDateClick(): void {
         clearInterval(this.countdownTimer);
+        this.tick();
         if (!this.state.isCountdown) {
             this.startTimer();
         }
@@ -60,14 +85,45 @@ export default class CountdownDate extends Component<
     }
 
     render(): ReactElement {
+        if (this.isPast()) {
+            return (
+                <div className="date-container past-date">
+                    <span className="date date-day">
+                        {this.state.date.format('DD')}
+                    </span>
+                    -
+                    <span className="date date-month">
+                        {this.state.date.format('MMM')}
+                    </span>
+                    <span className="date date-year">
+                        {this.state.date.format('YYYY')}
+                    </span>
+                </div>
+            );
+        }
+        if (this.state.isCountdown) {
+            return (
+                <div onClick={this.handleDateClick.bind(this)}>
+                    
+                </div>
+                );
+        }
         return (
-            <>
-                <span onClick={this.handleDateClick.bind(this)}>
-                    {this.state.isCountdown && this.isPast()
-                        ? this.countdown
-                        : this.state.date.format(this.props.format)}
+            <div
+                className="date-container"
+                onClick={this.handleDateClick.bind(this)}
+            >
+                <span className="date date-day">
+                    {this.state.date.format('DD')}
                 </span>
-            </>
+                -
+                <span className="date date-month">
+                    {this.state.date.format('MMM')}
+                </span>
+                <span className="date date-year">
+                    {this.state.date.format('YYYY')}
+                </span>
+            </div>
         );
     }
 }

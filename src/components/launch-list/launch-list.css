@@ -1,4 +1,129 @@
 .launch-list {
     position: relative;
     z-index: 1;
+    padding: 15px 25px;
+    color: #ffffff;
+}
+
+.launch-list > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.launch-list-item {
+    display: block;
+    padding: 1em 0;
+    cursor: pointer;
+}
+
+.launch-list-item:hover {
+    background-color: rgba(70, 70, 70, 0.2);
+}
+
+.list-even-item {
+    background-color: rgba(50, 50, 50, 0.2);
+}
+
+.list-odd-item {
+    background-color: rgba(2, 2, 2, 0.2);
+}
+
+.launch-list-item--patch-img {
+    width: 128px;
+    height: auto;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.launch-list-item:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    /* Adjusts for spacing */
+    /* margin-right: -0.25em; */
+}
+
+.launch-list-inline-item {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    margin-left: 40px;
+    height: 100%;
+}
+
+.launch-list-inline-item:before {
+    content: ' ';
+    width: 2px;
+    background-color: white;
+    position: absolute;
+    left: -15px;
+    top: 0;
+    bottom: -5px;
+}
+
+.launch-mission-name-container {
+    width: 350px;
+}
+
+.launch-mission-name {
+    display: block;
+    font-size: 1.75rem;
+    padding-right: 120px;
+}
+
+.launch-mission-launched-wrapper {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.launch-mission-launched {
+    padding: 10px;
+    border: solid 2px #000000;
+    border-radius: 1em;
+    font-size: 1.25em;
+    margin-left: 10px;
+}
+
+.launch-mission-launched-success {
+    background-color: green;
+}
+
+.launch-mission-launched-fail {
+    background-color: red;
+}
+
+/* .launch-item-date {
+} */
+
+.launch-mission-vehicle-container {
+    display: inline-block;
+    font-size: 1em;
+}
+
+.launch-mission-vehicle-head {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.5em;
+}
+
+.launch-mission-vehicle {
+    font-size: 1.25em;
+}
+
+.launch-mission-launchsite-container {
+    max-width: 600px;
+}
+
+.launch-mission-launchsite-head {
+    font-size: 1.3em;
+    display: block;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.launch-mission-launchsite {
+    font-size: 1.25em;
 }

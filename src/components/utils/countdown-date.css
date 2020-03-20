@@ -1,0 +1,30 @@
+.date-container {
+    padding: 15px;
+    cursor: pointer;
+}
+
+.date-container:hover {
+    border: solid 3px rgba(0, 0, 0, 0.1);
+    border-radius: 1em;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: 0.2s;
+}
+
+.past-date {
+    color: rgba(230, 230, 230, 0.8);
+    cursor: default;
+}
+
+.past-date:hover {
+    border: none;
+    background-color: none;
+}
+
+.date {
+    font-size: 1.2em;
+}
+
+.date-year {
+    display: block;
+    text-align: center;
+}
