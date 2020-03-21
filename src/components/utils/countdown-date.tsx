@@ -102,24 +102,22 @@ export default class CountdownDate extends Component<
             );
         }
         if (this.state.isCountdown) {
-            return (
-                <div onClick={this.handleDateClick.bind(this)}>
-                    
-                </div>
-                );
+            return <div onClick={this.handleDateClick.bind(this)}></div>;
         }
         return (
             <div
                 className="date-container"
                 onClick={this.handleDateClick.bind(this)}
             >
-                <span className="date date-day">
-                    {this.state.date.format('DD')}
-                </span>
-                -
-                <span className="date date-month">
-                    {this.state.date.format('MMM')}
-                </span>
+                <div className="day-month-container">
+                    <span className="date date-day">
+                        {this.state.date.format('DD')}
+                    </span>
+                    <span className="date-separator">-</span>
+                    <span className="date date-month">
+                        {this.state.date.format('MMM')}
+                    </span>
+                </div>
                 <span className="date date-year">
                     {this.state.date.format('YYYY')}
                 </span>

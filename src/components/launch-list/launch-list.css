@@ -17,8 +17,19 @@
     cursor: pointer;
 }
 
+.launch-list-item * {
+    cursor: pointer;
+}
+
 .launch-list-item:hover {
     background-color: rgba(70, 70, 70, 0.2);
+}
+
+.launch-list-item > a,
+.launch-list-item > a:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
 }
 
 .list-even-item {

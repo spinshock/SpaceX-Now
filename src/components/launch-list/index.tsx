@@ -7,7 +7,7 @@ import {
 import LaunchList from './launch-list';
 import './launch-filter.css';
 
-type LaunchListState = {
+export type LaunchListState = {
     range: LaunchRange;
     limit: number;
     offset: number;
@@ -15,7 +15,14 @@ type LaunchListState = {
     sort: string;
 };
 
-const LaunchListContainer: React.FC = () => {
+type LaunchListProps = {
+    state: LaunchListState;
+    updateState: (state: LaunchListState) => void;
+};
+
+const LaunchListContainer: React.FC<LaunchListProps> = (
+    props: LaunchListProps
+) => {
     const [state, setState] = useState({
         range: (LaunchRange as { [key: string]: LaunchRange })[''],
         limit: 10,
@@ -39,6 +46,7 @@ const LaunchListContainer: React.FC = () => {
             ...prevState,
             range: (LaunchRange as { [key: string]: LaunchRange })[range],
         }));
+        props.updateState(state);
     };
 
     return (
@@ -54,7 +62,7 @@ const LaunchListContainer: React.FC = () => {
                     >
                         All
                     </span>
-                    {Object.keys(LaunchRange).map(range => (
+                    {Object.keys(LaunchRange).map((range, i) => (
                         <span
                             className={`launch-filter-option ${
                                 range.toLowerCase() === state.range
@@ -62,6 +70,7 @@ const LaunchListContainer: React.FC = () => {
                                     : ''
                             }`}
                             onClick={(): void => handleRange(range)}
+                            key={i}
                         >
                             {range}
                         </span>
@@ -73,12 +82,13 @@ const LaunchListContainer: React.FC = () => {
                         className={`launch-filter-option ${
                             state.order === Order.Asc ? 'active' : ''
                         }`}
-                        onClick={(): void =>
+                        onClick={(): void => {
                             setState((prevState: LaunchListState) => ({
                                 ...prevState,
                                 order: Order.Asc,
-                            }))
-                        }
+                            }));
+                            props.updateState(state);
+                        }}
                     >
                         Asc
                     </span>
@@ -86,29 +96,32 @@ const LaunchListContainer: React.FC = () => {
                         className={`launch-filter-option ${
                             state.order === Order.Desc ? 'active' : ''
                         }`}
-                        onClick={(): void =>
+                        onClick={(): void => {
                             setState((prevState: LaunchListState) => ({
                                 ...prevState,
                                 order: Order.Desc,
-                            }))
-                        }
+                            }));
+                            props.updateState(state);
+                        }}
                     >
                         Desc
                     </span>
                 </div>
                 <div className="launch-filter-order">
                     Per page:
-                    {[5, 10, 20, 50].map((limit: number) => (
+                    {[5, 10, 20, 50].map((limit: number, i) => (
                         <span
                             className={`launch-filter-option limit-option ${
                                 state.limit === limit ? 'active' : ''
                             }`}
-                            onClick={(): void =>
+                            onClick={(): void => {
                                 setState((prevState: LaunchListState) => ({
                                     ...prevState,
                                     limit,
-                                }))
-                            }
+                                }));
+                                props.updateState(state);
+                            }}
+                            key={i}
                         >
                             {limit}
                         </span>
@@ -120,12 +133,13 @@ const LaunchListContainer: React.FC = () => {
                         className={`launch-filter-option ${
                             state.sort === 'launch_mission_name' ? 'active' : ''
                         }`}
-                        onClick={(): void =>
+                        onClick={(): void => {
                             setState((prevState: LaunchListState) => ({
                                 ...prevState,
                                 sort: 'launch_mission_name',
-                            }))
-                        }
+                            }));
+                            props.updateState(state);
+                        }}
                     >
                         Name
                     </span>
@@ -133,12 +147,13 @@ const LaunchListContainer: React.FC = () => {
                         className={`launch-filter-option ${
                             state.sort === 'launch_date_utc' ? 'active' : ''
                         }`}
-                        onClick={(): void =>
+                        onClick={(): void => {
                             setState((prevState: LaunchListState) => ({
                                 ...prevState,
                                 sort: 'launch_date_utc',
-                            }))
-                        }
+                            }));
+                            props.updateState(state);
+                        }}
                     >
                         Date
                     </span>
@@ -146,12 +161,13 @@ const LaunchListContainer: React.FC = () => {
                         className={`launch-filter-option ${
                             state.sort === 'rocket_name' ? 'active' : ''
                         }`}
-                        onClick={(): void =>
+                        onClick={(): void => {
                             setState((prevState: LaunchListState) => ({
                                 ...prevState,
                                 sort: 'rocket_name',
-                            }))
-                        }
+                            }));
+                            props.updateState(state);
+                        }}
                     >
                         Rocket
                     </span>

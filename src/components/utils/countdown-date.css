@@ -28,3 +28,16 @@
     display: block;
     text-align: center;
 }
+
+.day-month-container {
+    display: grid;
+    grid-template-columns: 5fr 1fr 5fr;
+}
+
+.date-day {
+    text-align: end;
+}
+
+.date-separator {
+    text-align: center;
+}
