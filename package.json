@@ -20,7 +20,7 @@
         "react": "^16.13.0",
         "react-dom": "^16.13.0",
         "react-router-dom": "^5.1.2",
-        "react-scripts": "3.4.0",
+        "react-scripts": "5.0.1",
         "typescript": "^3.7.5"
     },
     "scripts": {
@@ -46,7 +46,7 @@
         ]
     },
     "devDependencies": {
-        "@graphql-codegen/cli": "^1.13.1",
+        "@graphql-codegen/cli": "^1.21.8",
         "@graphql-codegen/typescript": "^1.13.1",
         "@graphql-codegen/typescript-operations": "^1.13.1",
         "@graphql-codegen/typescript-react-apollo": "^1.13.1",
